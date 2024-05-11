@@ -7,16 +7,22 @@ public class playerController : MonoBehaviour
     [Header("Player")]
     public Rigidbody2D playerRigidBody;
     public Transform playerTransform;
+    public Animator playerAnimation;
+    public GameObject armaTripla;
+    public GameObject armaQuintupla;
+
+
 
     [Header("Speed")]
     public float maxSpeedX;
     public float maxSpeedY;
 
-
     // Start is called before the first frame update
     void Start()
     {
-
+        playerAnimation = GetComponent<Animator>();
+        armaTripla.SetActive(false);
+        armaQuintupla.SetActive(false);
     }
 
     // Update is called once per frame
@@ -26,16 +32,23 @@ public class playerController : MonoBehaviour
         float movY = Input.GetAxis("Vertical");
 
         playerRigidBody.velocity = new Vector3(movX * maxSpeedX, movY * maxSpeedY);
-        //adicionando velocidade ao personagem (como é 2d não é necessario adicionar eixo z;
-        // para Y cima positivo; para baixo negativo;  X para esquerda positivo, para direita positivo
-        
-        if (movX > 0)
+        playerAnimation.SetFloat("movx", movX);
+
+
+        if (Input.GetButtonDown("Jump"))
         {
-            playerTransform.localScale = new Vector3(36, 36, 36);
-        }
-        else
-        {
-            playerTransform.localScale = new Vector3(18, 18, 18);
+            if (!armaTripla.activeSelf)
+            {
+                armaTripla.SetActive(true);
+            }else if (!armaQuintupla.activeSelf)
+            {
+                armaQuintupla.SetActive(true);
+            }
+            else
+            {
+                armaTripla.SetActive(false);
+                armaQuintupla.SetActive(false);
+            }
         }
     }
 }

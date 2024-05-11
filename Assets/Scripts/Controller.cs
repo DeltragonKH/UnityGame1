@@ -12,7 +12,7 @@ public class Controller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        txtPrincipal.text = "Hello World";
+        txtPrincipal.text = "Hello World!";
         txtScore.text = "Score: 0";
     }
 
@@ -20,6 +20,6 @@ public class Controller : MonoBehaviour
     void Update()
     {
         score++;
-        txtScore.text = "Score : " + score;
+        txtScore.text = "Score: " + score;
     }
 }
