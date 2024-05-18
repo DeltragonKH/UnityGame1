@@ -7,6 +7,9 @@ public class Chutecontroller : MonoBehaviour
     public GameObject tiroPrefab;
     public float forceSpeedFile;
     public bool isPlayer;
+    public float currentTime;
+    public float chuteInterval;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,10 +19,18 @@ public class Chutecontroller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButtonDown("Fire1") && isPlayer)
+        currentTime += Time.deltaTime;
+
+        if (currentTime >= chuteInterval)
         {
+            currentTime = 0;
             Atirar();
         }
+
+        //if(Input.GetButtonDown("Fire1") && isPlayer)
+        //{
+            //Atirar();
+        //}
     }
 
     public void Atirar()
